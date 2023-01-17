@@ -7,7 +7,7 @@ module.exports = {
         /**
          * Context Menus
          */
-        if (interaction.isUserContextMenuCommand() || interaction.isMessageContextMenu()) {
+        if (interaction.isUserContextMenuCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
             if (command) command.execute(interaction);
         }

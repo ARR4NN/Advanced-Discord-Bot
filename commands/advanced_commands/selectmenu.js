@@ -1,13 +1,13 @@
-const { MessageActionRow, MessageSelectMenu } = require('discord.js');
+const { ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 
 
 module.exports = {
     name: "select", // Command Name
     description: "A command with a select menu. How cool", // Command Description
     async execute(Client, interaction) {
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageSelectMenu()
+                new StringSelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder('Nothing selected')
                     .addOptions([

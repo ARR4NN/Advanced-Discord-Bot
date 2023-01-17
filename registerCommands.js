@@ -5,9 +5,7 @@ const { Routes } = require('discord-api-types/v9');
 const { TOKEN, clientId, guildId } = require('./util/config');
 const { readdirSync } = require("fs");
 const fs = require('fs');
-const chalk = require('chalk');
 const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 /**
  * Import all commands
  */
@@ -24,7 +22,7 @@ for (const folder of commandFolders) {
             options: command.options,
         };
         if (["MESSAGE", "USER"].includes(command.type)) delete command.description;
-        console.log(chalk.blue("Loaded command /" + cmd.name));
+        console.log("Loaded command /" + cmd.name);
 
         commands.push(cmd);
     }
@@ -32,7 +30,7 @@ for (const folder of commandFolders) {
 const rest = new REST({ version: '9' }).setToken(TOKEN);
 (async () => {
     try {
-        console.log(chalk.green("Started refreshing application (/) commands."));
+        console.log("Started refreshing application (/) commands.");
         if (myArgs == "--global") {
             console.log("Submitting global commands")
             await rest.put(
@@ -58,7 +56,7 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
                 { body: [] },
             );
         }
-        console.log(chalk.green("Successfully reloaded application (/) commands."));
+        console.log("Successfully reloaded application (/) commands.");
         return process.exit(1);
     } catch (error) {
         console.error(error);
